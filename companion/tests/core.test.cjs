@@ -1,0 +1,8 @@
+const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs');
+const configs=JSON.parse(fs.readFileSync(require('node:path').resolve(__dirname,'../reference/Config/maps.json'),'utf8'));
+const {parseScreenshot,worldToMap,matchItems,cultistTotal}=require('../core.cjs');
+test('EFT screenshot includes position before quaternion, time and duplicate suffix',()=>{assert.deepEqual(parseScreenshot('2026-09-04[18-33]_7.86, 38.06, -27.57_-0.03307, -0.13322, 0.00384, -0.99053_21.87 (0).png'),{x:7.86,y:38.06,z:-27.57});assert.equal(parseScreenshot('2026-10-07[11-30].png'),null);assert.deepEqual(parseScreenshot('position_-100, 20, 300.png'),{x:-100,y:20,z:300});});
+test('known Customs bounds preserve east/west and north/south mapping',()=>{const map=configs.customs;const midpoint=worldToMap({x:163,z:-35},map);assert.ok(Math.abs(midpoint.nx-.5)<1e-8);assert.ok(Math.abs(midpoint.ny-.5)<1e-8);const a=worldToMap({x:698,z:-307},map);assert.ok(a.nx<1e-8);assert.ok(a.ny<1e-8);assert.equal(worldToMap({x:9999,z:9999},map).inBounds,false);});
+test('Labyrinth uses native pixel calibration rather than normalized bounds',()=>{const map=configs.labyrinth;const zero=worldToMap({x:0,z:0},map);assert.ok(Math.abs(zero.nx-85.5*16/4096)<1e-8);assert.ok(Math.abs(zero.ny-128*16/4096)<1e-8);});
+test('OCR matches exact names and returns no invented item for unrelated text',()=>{const items=[{id:'a',name:'Salewa first aid kit',shortName:'Salewa'},{id:'b',name:'Car first aid kit',shortName:'Car'}];assert.equal(matchItems('SALEWA FIRST AID KIT',items)[0].item.id,'a');assert.deepEqual(matchItems('random words',items),[]);});
+test('offering values never use negative sacrifices',()=>assert.equal(cultistTotal([{value:100},{value:-5},{}]),100));

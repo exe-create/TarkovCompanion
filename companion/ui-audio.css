@@ -1,0 +1,10 @@
+.ui-audio-card{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,.8fr);align-items:center;gap:8px 30px}
+.ui-audio-card h2{margin:0}
+.ui-audio-card>p{grid-column:1;margin:0}
+.ui-audio-toggle,.ui-audio-volume{display:flex;align-items:center;gap:10px;color:var(--text);font-size:12px}
+.ui-audio-toggle{grid-column:2;grid-row:1}
+.ui-audio-toggle input{margin:0}
+.ui-audio-volume{grid-column:2;grid-row:2;justify-content:space-between;color:var(--muted)}
+.ui-audio-volume input{width:100%;max-width:190px;padding:0;accent-color:var(--accent)}
+.ui-audio-volume output{display:inline-block;min-width:34px;margin-left:6px;color:var(--accent);font-variant-numeric:tabular-nums}
+@media(max-width:760px){.ui-audio-card{grid-template-columns:1fr}.ui-audio-card>p,.ui-audio-toggle,.ui-audio-volume{grid-column:1;grid-row:auto}.ui-audio-volume input{max-width:none}}

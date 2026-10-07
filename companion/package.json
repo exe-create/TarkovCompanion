@@ -1,0 +1,32 @@
+{
+  "name": "tarkov-companion",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Personal external Tarkov planning companion",
+  "main": "desktop.cjs",
+  "scripts": {
+    "start": "electron .",
+    "dev": "node server.cjs",
+    "prepare-data": "node scripts/prepare-data.cjs",
+    "test": "node --test tests/*.test.cjs",
+    "test:ui": "node tests/ui-smoke.cjs",
+    "test:desktop": "node tests/desktop-smoke.cjs",
+    "test:ocr": "node tests/ocr-smoke.cjs",
+    "test:map-ui": "node tests/map-ui-smoke.cjs",
+    "sync": "node scripts/sync.cjs",
+    "check": "node --check app.js && node --check desktop.cjs && node --check server.cjs && node --check core.cjs && node --check map-logic.cjs && node --check map-ui.js && node --check art.js && node --check scripts/sync.cjs && node --check preload.cjs && node --check tools-ui.js && node --check features-ui.js && node --check planner-core.cjs && node --check overlay-manager.cjs && node --check sharing.cjs && node --check keybinds.cjs && node --check ui-audio.js && node --check phone.js && node --check log-sync.cjs && node --check advanced-core.cjs && node --check advanced-ui.js",
+    "test:minimap": "node tests/minimap-desktop.cjs",
+    "test:features": "node tests/features-ui.cjs",
+    "test:overlays": "node tests/overlays-desktop.cjs",
+    "test:audio": "node tests/audio-ui.cjs",
+    "test:advanced": "node tests/advanced-ui.cjs"
+  },
+  "devDependencies": {
+    "electron": "41.10.6",
+    "playwright": "^1.58.0"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4",
+    "tesseract.js": "^6.0.1"
+  }
+}

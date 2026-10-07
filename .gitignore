@@ -1,0 +1,16 @@
+companion/node_modules/
+companion/evidence/*
+!companion/evidence/*.md
+local-backups/
+.modforge/
+**/*.tmp
+**/*.log
+**/state.json
+**/desktop-preferences.json
+**/log-cursors.json
+settings.json
+tracker-state.json
+*.zip
+.env
+.env.*
+**/*.traineddata*

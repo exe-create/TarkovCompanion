@@ -1,0 +1,4 @@
+node_modules/
+data/raw-*.json
+data/reference-source.txt
+*.log
