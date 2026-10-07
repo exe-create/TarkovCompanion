@@ -14,16 +14,16 @@ Live community JSON data fetched for regular, pve and pvp-season. Persistent PvP
 
 TASK-002 adds five generated atlases (72 sprites, including 32 portraits) and one header painting; art appears throughout navigation, buttons, headings, cards, legend, markers and dossiers. Exact prompts/source references are in `companion/art/manifest.json`. Exits/transits use large distinct emblems, destination labels, a distance-sorted exit board and manual availability checks. Green proximity rings use reference XZ/Y geometry and are distinct from confirmed availability. Optional boss/spawn/hazard layers and exact source variants now refresh from live community map data. Generated artwork does not replace source map geometry.
 
-Passed: final reported 28 Node tests and syntax checks; feature browser flow, map UI/minimap, native map/item/quest overlays with QR/phone sharing, OCR, screenshot watcher/restart, quest-inventory/crafting, audio and map/art regression flows. Exact TASK-005 evidence is in `companion/evidence/task-005-validation.md`; earlier evidence remains in `companion/evidence/`. Browser/native fixtures do not establish live Tarkov behavior.
+Passed: latest reported 35 Node tests and syntax checks; feature browser flow, map UI/minimap, native map/item/quest overlays with QR/phone sharing, OCR, screenshot watcher/restart, quest-inventory/crafting, audio, map/art and Sync UI/native flows. TASK-005 evidence is in `companion/evidence/task-005-validation.md`; Sync checks use synthetic logs/paths and do not establish live Tarkov behavior.
 
 ## Immediate goal
-TASK-001 through TASK-005 are implemented and locally verified. Keep full Questie parity and live acceptance open. Validate real-game screenshot positioning/facing/OCR, log event schemas, exit accuracy, normal/borderless overlay behavior, and resolve BSG permission uncertainty before treating optional in-game tools as approved. Maintain the private source repository and keep personal progress outside Git.
+TASK-001 through TASK-006 are implemented and locally verified. Keep full Questie parity and live acceptance open. Validate real-game screenshot positioning/facing/OCR, log event schemas, exit accuracy, normal/borderless overlay behavior, and resolve BSG permission uncertainty before treating optional in-game tools as approved. Maintain the private source repository and keep personal progress outside Git.
 
 ## Active risks
 - BSG screenshot/overlay approval is unverified; capture and folder monitoring default off.
 - Community data may lag patch 1.2.0.0; map geometry is reference data.
 - OCR matches visible text, not item icons; live recognition is pending.
-- Recent client logs exposed no usable quest/raid payload; automatic game synchronization is unverified.
+- Recent installed client logs confirmed session-mode metadata only; quest/raid importer coverage is fixture-based. Automatic hideout/inventory sync is unavailable from verified local sources. Auto-discovery now compares candidate log activity and preserves a configured existing path; mode tags older than 24 hours do not change the selected profile.
 - True exclusive-fullscreen overlays, live map/floor detection, BSG approval, and real-game behavior remain unverified. No installer/signing/public release has been produced.
 
 ## TASK-003 desktop/UI update
@@ -33,9 +33,16 @@ Native test:minimap and existing browser/desktop/map tests passed alongside four
 
 Added separate map/item/quest overlays, saved-control-aware F6–F11 preset, cursor-name OCR, trader price cards, quiet configurable sounds, quest tree/counters, map loot/key layers/presets, gear/key/trader/stat tools, craft workbench and private LAN phone/squad sharing. Source buy/sell offers fixed and all three caches refreshed. Optional recognized-schema log importer is implemented, but recent real client logs contained no usable quest/raid events; automatic sync is unverified. Manual story/special stations are labeled planning tools.
 
-24 Node checks and final feature/map/native overlay-phone/audio/screenshot-watcher checks passed. Evidence: companion/evidence/task-004-validation.md. Full reference parity, real Tarkov behavior and BSG approval remain pending; comparison/gaps are in RESEARCH_AND_COMPATIBILITY.md. No game controls changed. Original application preserved.
+24 Node checks and final feature/map/native overlay-phone/audio/screenshot-watcher checks passed. Evidence: companion/evidence/task-004-validation.md. Full reference parity, real Tarkov behavior and BSG approval remain pending; comparison/gaps are in RESEARCH_AND_COMPATIBILITY.md. No game controls changed. The compiled legacy application was retired per the owner's later direction; its private state was preserved separately.
 
 ## TASK-005 advanced feature update
 The old compiled tracker is retired and its private state is preserved under ignored `local-backups/legacy-state/`. The companion now owns its map and offline reference inputs. Advanced planning adds recorded-price observations, weekly raid summaries, manual Bitcoin economics, craft favorites, trader restock countdowns, container/item/owned-key filters, clickable hideout station focus, facing estimates from screenshot quaternions, and QR-backed private LAN sharing.
 
-Validation: 28 Node tests plus syntax checks, browser feature flow, map UI/minimap, and native three-overlay/QR/phone coverage passed. See `companion/evidence/task-005-validation.md`. Fixtures use synthetic data and do not prove game integration. Automatic log quest/raid sync, full Questie parity, BSG approval, and live/fullscreen acceptance remain open.
+Validation: 28 Node tests plus syntax checks, browser feature flow, map UI/minimap, and native three-overlay/QR/phone coverage passed at TASK-005 completion. See `companion/evidence/task-005-validation.md`. Fixtures use synthetic data and do not prove game integration. Automatic log quest/raid sync, full Questie parity, BSG approval, and live/fullscreen acceptance remain open.
+
+## TASK-006 one-button Sync update
+Sync discovers known BSG/Steam Logs and screenshot folders, checks the last logged mode, refreshes community caches, imports only recognized quest/raid records, and may import a recent screenshot position only when its filename identifies exactly one map. Hideout levels, player inventory, and station timers remain user-entered. Real installed logs showed session mode only; quest/raid event tests use fixtures, so live automatic progress sync is not verified.
+
+Unapplied recognized records are retained in a persistent inbox by mode until the matching profile can accept them. If a detected mode has multiple matching profiles, Sync leaves progress queued for explicit profile selection. Mode detection ignores log sessions older than 24 hours. Refresh errors retain the existing cache. At TASK-006 completion, `npm test` reported 35 Node tests; `npm run check` and native fixture coverage for Sync passed. These checks are not live-game evidence.
+
+Latest follow-up: `npm test` now reports 35 passing Node tests, syntax checks and Sync UI/native smoke checks passed. Multi-install discovery now selects the candidate with the freshest application-log activity while retaining a valid configured path; the stale-mode and multiple-profile paths have fixture coverage. Failed UI sync attempts update the retry timestamp, preserving the 10-minute background cadence.

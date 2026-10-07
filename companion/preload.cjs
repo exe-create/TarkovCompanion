@@ -1,5 +1,7 @@
 const {contextBridge,ipcRenderer}=require('electron');
 contextBridge.exposeInMainWorld('desktop',{
+ syncAll:(mode,options)=>ipcRenderer.invoke('sync:run',mode,options),
+ pendingSync:()=>ipcRenderer.invoke('sync:pending'),ackSync:keys=>ipcRenderer.invoke('sync:ack',keys),
  loadState:()=>ipcRenderer.invoke('state:load'),saveState:s=>ipcRenderer.invoke('state:save',s),
  importPosition:()=>ipcRenderer.invoke('position:import'),chooseFolder:()=>ipcRenderer.invoke('folder:choose'),
  scan:capture=>ipcRenderer.invoke('scan:run',capture),overlay:show=>ipcRenderer.invoke('overlay:toggle',show),opacity:value=>ipcRenderer.invoke('overlay:opacity',value),

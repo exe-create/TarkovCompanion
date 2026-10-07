@@ -92,6 +92,28 @@ How to prove it.
 ### Definition of Done
 Evidence/status required to close.
 -->
+## TASK-006 — One-button local Sync and source discovery
+
+Status: implemented / locally verified / live log support pending
+Priority: high
+Owner: Codex
+Type: work
+
+### Goal
+Let one foreground action discover supported local sources, refresh community data and import only known progress events without overwriting manual state.
+
+### Scope
+Read-only discovery of known BSG/Steam logs, screenshot folders and saved controls; mode-aware bounded log parsing; screenshot filename position import where map identity is explicit; persistent per-mode pending event inbox; optional log/screenshot watching and periodic public-data refresh. No account login, memory access, game input or invented hideout data.
+
+### Acceptance
+Foreground Sync may use a session mode recorded within 24 hours. A unique same-mode profile can be selected; multiple matching profiles require the user to select one and leave events pending. Unknown/unmatched events remain pending; refresh failures keep existing caches. Hideout levels, inventory and station timers stay unchanged because no verified local source exposes them.
+
+### Validation
+Latest `npm test` reported 35 passing Node tests; `npm run check`, Sync UI smoke and native `npm run test:sync` passed. Fixtures covered mode/source discovery, freshest-root selection with a stale candidate, stale mode rejection, multiple quest records on one line, pending progress and queue replay after explicit profile selection, appended-log watching, manual progress preservation, unlabeled/ambiguous screenshot maps, pause persistence, inbox write retry and unavailable hideout data. Installed client logs exposed session-mode metadata only; fixture results do not establish real automatic quest/raid or hideout sync.
+
+### Definition of Done
+The best-effort local Sync flow is implemented. Real quest/raid log payload availability, hideout/inventory sync, BSG approval and live-game behavior remain unverified. Auto-discovery compares application-log activity across known roots and preserves a valid configured path; a multi-root fixture covers this selection rule. The actual installed logs still confirm mode metadata only.
+
 ## TASK-005 — Advanced Questie-style planning and companion features
 
 Status: implemented locally / parity and live acceptance pending

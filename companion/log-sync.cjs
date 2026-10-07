@@ -18,7 +18,7 @@ function canonicalMode(value) {
   return null;
 }
 
-function createLogSync({ getSettings = () => ({}), onEvents = () => {}, userData, pollIntervalMs = POLL_MS }) {
+function createLogSync({ getSettings = () => ({}), onEvents = () => {}, onRecords = () => {}, userData, pollIntervalMs = POLL_MS }) {
   if (!userData) throw new TypeError('userData directory is required');
   const cursorPath = path.join(userData, 'log-cursors.json');
   let cursors = {};
@@ -84,20 +84,21 @@ function createLogSync({ getSettings = () => ({}), onEvents = () => {}, userData
       if (!event.mode) continue;
       event.profile = profile || null;
       event.source = 'disk-log';
-      event.dedupeKey = lineHash(file, lineNumber, line);
+      event.dedupeKey = createHash('sha256').update(lineHash(file,lineNumber,line)).update(JSON.stringify([event.type,event.id,event.status,event.map])).digest('hex');
       if (emit.some(existing => existing.dedupeKey === event.dedupeKey)) continue;
       emit.push(event);
     }
     return { mode };
   }
 
-  function scan({ initialImport = false } = {}) {
+  function scan({ initialImport = false, emit = true, folder: overrideFolder } = {}) {
     if (closed || busy) return [];
     busy = true;
+    const previousCursors={...cursors};
     const emitted = [];
     try {
       const cfg = settings();
-      const folder = typeof cfg.logsFolder === 'string' ? cfg.logsFolder.trim() : '';
+      const folder = typeof overrideFolder === 'string' ? overrideFolder : typeof cfg.logsFolder === 'string' ? cfg.logsFolder.trim() : '';
       if (!folder || !fs.existsSync(folder)) return [];
       const profile = typeof cfg.logProfile === 'string' ? cfg.logProfile : '';
       const files = getFiles(folder);
@@ -110,10 +111,10 @@ function createLogSync({ getSettings = () => ({}), onEvents = () => {}, userData
       const emittedHashes = new Set();
       for (const file of files) {
         const key = path.resolve(file.full);
-        let cursor = cursors[key];
+        let cursor = cursors[key]?{...cursors[key]}:null;
         const isNew = !cursor || !Number.isFinite(cursor.offset);
         if (isNew && !initialImport) {
-          cursors[key] = { offset: file.size, partial: '', lineNumber: 0 };
+          cursors[key] = { offset: file.size, partial: '', lineNumber: 0, mode:/application/i.test(file.full)?latestMode(file.full):null };
           continue;
         }
         if (isNew && initialImport) {
@@ -140,7 +141,7 @@ function createLogSync({ getSettings = () => ({}), onEvents = () => {}, userData
         const consumedNew = Math.max(0, completeBytes - previous.length);
         const nextOffset = cursor.offset + readLength;
         const partialBytes = Buffer.concat([previous, bytes.subarray(consumedNew)]);
-        const state = { mode: null };
+        const state = { mode: /application/i.test(file.full) ? cursor.mode||null : null };
         // Re-read at most the bounded current application tail to restore session mode context.
         if (!/application/i.test(file.full)) {
           const appFile = files.find(other => other.session === file.session && /application/i.test(other.full));
@@ -156,12 +157,13 @@ function createLogSync({ getSettings = () => ({}), onEvents = () => {}, userData
           if (emittedHashes.has(hash)) continue;
           emittedHashes.add(hash);
         }
-        cursors[key] = { offset: nextOffset, partial: partialBytes.toString('base64'), lineNumber: cursor.lineNumber || 0 };
+        cursors[key] = { offset: nextOffset, partial: partialBytes.toString('base64'), lineNumber: cursor.lineNumber || 0, mode:state.mode };
       }
-      if (emitted.length) onEvents(emitted);
+      if (emitted.length) onRecords(emitted);
+      if (emit && emitted.length) onEvents(emitted);
       if (files.length) save();
       return emitted;
-    } finally { busy = false; }
+    } catch(error){cursors=previousCursors;throw error;} finally { busy = false; }
   }
 
   function latestMode(file) {
@@ -184,14 +186,19 @@ function createLogSync({ getSettings = () => ({}), onEvents = () => {}, userData
     timer = null;
     if (settings().logSync === true) {
       // Baseline existing files so enabling watch never silently replays old content.
-      scan();
-      timer = setInterval(() => scan(), pollIntervalMs);
+      const poll=()=>{try{scan();}catch{/* Preserve cursors and retry on the next poll; manual Sync reports errors. */}};
+      poll();
+      timer = setInterval(poll, pollIntervalMs);
       timer.unref?.();
     }
     return true;
   }
 
-  function importNow() { return scan({ initialImport: true }); }
+  function inspect(folder = settings().logsFolder) {
+    const files=getFiles(folder||''),apps=files.filter(f=>/application/i.test(f.full)).sort((a,b)=>b.mtime-a.mtime);
+    return {files:files.length,mode:apps.length?latestMode(apps[0].full):null,at:apps[0]?.mtime||null};
+  }
+  function importNow(options = {}) { return scan({ ...options, initialImport: true }); }
   function close() {
     closed = true;
     if (timer) clearInterval(timer);
@@ -199,7 +206,7 @@ function createLogSync({ getSettings = () => ({}), onEvents = () => {}, userData
     save();
   }
 
-  return { configure, importNow, close };
+  return { configure, importNow, inspect, close };
 }
 
 module.exports = { createLogSync, canonicalMode, MAX_FILE_BYTES, MAX_FILES };
