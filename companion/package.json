@@ -20,7 +20,9 @@
     "test:overlays": "node tests/overlays-desktop.cjs",
     "test:audio": "node tests/audio-ui.cjs",
     "test:advanced": "node tests/advanced-ui.cjs",
-    "test:sync": "node tests/sync-desktop.cjs"
+    "test:sync": "node tests/sync-desktop.cjs",
+    "package:windows": "node scripts/package-windows.cjs",
+    "test:release": "node tests/release-smoke.cjs"
   },
   "devDependencies": {
     "electron": "41.10.6",

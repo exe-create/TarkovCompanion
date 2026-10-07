@@ -4,6 +4,8 @@ A personal Electron desktop companion. The owner superseded the earlier preserve
 
 ## Start
 
+For the public Windows preview, download the portable ZIP from [GitHub Releases](https://github.com/exe-create/TarkovCompanion/releases), extract the entire folder, and open `TarkovCompanion.exe`. No Node.js or installation is required. Keep the runtime files together. Progress stays in `%APPDATA%\TarkovCompanion` when replacing the portable folder. This preview is unsigned; live Tarkov behavior and BSG approval remain unverified.
+
 Double-click `Launch New Tarkov Companion.cmd` in the project root, or `Launch Companion.cmd` in this folder. Node.js is required for development commands; the installed Electron runtime launches the desktop app directly.
 
 Browser alternative: `Launch Browser.cmd`, or `npm run dev` and open `http://127.0.0.1:4317`. Native overlay, local OCR and screenshot folder tools require the desktop app.
@@ -120,3 +122,11 @@ For phone/squad: Field tools → Squad → Start private LAN room, then open the
 Optional log import: select the client Logs folder and correct profile in Preferences, then explicitly import or enable watching. Only recognized quest/raid event schemas are accepted. Current real log inspection found no usable quest/raid payload, so automatic game synchronization is **unverified**. Manual tracking remains available. Full Questie parity is not claimed; exact comparison is in docs/production/RESEARCH_AND_COMPATIBILITY.md.
 
 Added checks: `npm run test:features`, `npm run test:overlays`, `npm run test:audio`, `npm run test:advanced`. Task 005 focused checks and limits: `evidence/task-005-validation.md`.
+
+## One-button Sync
+
+Use the header's **Sync** button to discover known game folders, check saved keybinds and refresh available community data. The result lists what was updated and what is unavailable. Sync preserves manual level, hideout and inventory entries. Recognized quest/raid log records are imported only into the matching mode; unmatched records stay queued. If multiple profiles match a detected mode, select the intended profile. Installed logs currently expose session mode only, so real automatic quest/raid progress remains unverified.
+
+Preferences offers **Keep detected sources synchronized** for new log records, explicitly map-labeled screenshot filenames and a 10-minute community refresh. Uncheck it to pause. Screenshot filenames without a map label need your manual map selection/import. Sync does not enable screen OCR, change game controls or access your game account.
+
+Build a Windows portable artifact from committed source with `npm run package:windows`. Output is under ignored `evidence/release-*`; the ZIP includes Electron and production dependencies, excludes personal state and includes `SHA256SUMS.txt`. Verify the extracted folder with `npm run test:release -- "absolute-path-to-portable-folder"`.

@@ -2,6 +2,8 @@
 
 Personal external Escape from Tarkov planning app: maps, separate minimap/item/quest overlays, quests, hideout, crafts, cultist planner, flea/trader references and private LAN phone/squad tools.
 
+The source repository is public at [exe-create/TarkovCompanion](https://github.com/exe-create/TarkovCompanion). A v0.1.0 portable Windows preview is planned; no binary release has been published. This is an owner-authorized binary preview; the source code is not described as open source, and no BSG approval is claimed.
+
 On Windows, open **Launch New Tarkov Companion.cmd**. Source, dependencies and reference assets live in `companion/`. See [usage and setup](companion/README.md).
 
 Fresh checkout:
