@@ -134,7 +134,7 @@ Add screenshot quaternion last-facing estimate, per-map container visibility and
 `prepare-data` migration passed; npm audit reported 0 vulnerabilities. 28 Node tests and syntax checks passed, as did feature UI, map UI, minimap, screenshot watcher, advanced filter regression, Electron native overlay/QR/phone checks on Electron 41.10.6. These use fixtures and generated data, not a live Tarkov session. Details: `companion/evidence/task-005-validation.md`.
 
 ### Definition of Done
-The bounded package is implemented locally. Full Questie parity, real automatic quest/raid log payloads, live map/facing accuracy, BSG permission, exclusive fullscreen, and live in-game acceptance remain open. Internet relay, global-game Shift-click/icon recognition, canonical story/endings, exact skill and automatic Bitcoin formulas remain absent. The source repository is public; no GitHub release exists yet. The planned v0.1.0 portable Windows preview still requires source/data rights clearance, dependency notices, package build, and clean-machine QA; see RELEASE_OPERATIONS.md.
+The bounded package is implemented locally. Full Questie parity, real automatic quest/raid log payloads, live map/facing accuracy, BSG permission, exclusive fullscreen, and live in-game acceptance remain open. Internet relay, global-game Shift-click/icon recognition, canonical story/endings, exact skill and automatic Bitcoin formulas remain absent. The source repository is public; the v0.1.0 portable Windows preview is published as a prerelease. Package build and extracted-ZIP smoke passed; clean-machine and live-game verification remain unclaimed. See `RELEASE_OPERATIONS.md` for artifact hash and test boundaries.
 
 ## TASK-004 — Feature expansion, price/quest overlays and saved-control hotkeys
 

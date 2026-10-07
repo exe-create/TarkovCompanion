@@ -18,7 +18,7 @@ Use this file to classify retained project documents as canonical, technical aut
 - `companion/README.md`: technical usage, feature scope, persistence/data boundaries and validation commands for the new app.
 - `companion/` application source and `companion/tests/`: technical implementation/test authority.
 - Retired ExesQuestMapTracker binaries, WebView2/.NET runtime, old Assets/Brand and obsolete tools were removed as directed. Legacy `tracker-state.json` and `settings.json` are preserved in ignored `local-backups/legacy-state/`; never treat them as distributable app content.
-- `companion/maps/`: active source-repository map assets. The upstream map attribution, README, and CC BY-NC-SA 4.0 license are recorded in `CREDITS.md`; the maps and interactive map assets are excluded from the portable runtime.
+- `companion/maps/`: active source-repository map assets. Thirteen base map files are bundled in the portable runtime with upstream attribution, README, and CC BY-NC-SA 4.0 license; unused interactive map assets are excluded. See `CREDITS.md`.
 - `companion/reference/{Config,Data}/`: offline preparation inputs and retained reference data. These unused source files are excluded from the portable runtime.
 - `companion/data/live-*.json`: generated community caches with provenance; refresh via the app or sync script.
 - `companion/evidence/`: local/browser/native test artifacts, not live Tarkov acceptance.
@@ -28,7 +28,7 @@ Use this file to classify retained project documents as canonical, technical aut
 
 TASK-003: companion/overlay-desktop.cjs owns native bounds/topmost/click-through/global registration; tools-ui.js owns renderer controls; upgrade.css owns main background/compact layout. Original background prompt/method: companion/art/manifest.json. Fullscreen boundary: official Electron BrowserWindow and Microsoft Direct3D Windowed vs Full-Screen Mode documentation.
 
-## Public source and planned binary release
+## Public source and binary release
 - Root `README.md` is the public-facing source/release status summary; source repository: https://github.com/exe-create/TarkovCompanion.
-- `RELEASE_OPERATIONS.md`, `QA_RELEASE.md`, and `CREDITS.md` are canonical for v0.1.0 portable Windows preview gates, provenance, notices, and release status. The preview is planned, not published.
+- `RELEASE_OPERATIONS.md`, `QA_RELEASE.md`, and `CREDITS.md` are canonical for v0.1.0 portable Windows release details, provenance, notices, and verification boundaries. The preview is published as a prerelease.
 - The source repository is not described as open source. The owner authorized a binary preview; see `RELEASE_OPERATIONS.md` for package-only QA gates. Upstream map attribution/license files remain with the public source; no BSG approval or broader legal clearance is claimed.
