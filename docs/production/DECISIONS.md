@@ -5,6 +5,9 @@ purpose: settled decision ledger
 -->
 # Active decisions
 
+## DEC-012 — Background work cannot interrupt play
+2026-10-07: Background checks/watchers only update local state and retain status for later inspection. Never call modal/window focus/show or screen capture from automatic sync. No toast/audio on automatic updates/failures; no global shortcut re-registration during periodic refresh. Defer DOM replacement while focused or in a dialog. Manual controls still open explicitly requested UI. Keep personal quest status separate from community definitions; do not infer completion from counters, hand-in readiness or prerequisites. Source timestamps/manual corrections govern updates; auto priorities are computed rather than inserted into manual pins. Test native background behavior in hidden isolated windows without registering shortcuts. No blanket claim about live-game performance or BSG approval.
+
 Record durable product/architecture/operating decisions here so agents do not repeatedly reopen them.
 
 ## DEC-001 — Electron companion and owner-directed legacy retirement

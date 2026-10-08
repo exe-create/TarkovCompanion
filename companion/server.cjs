@@ -13,6 +13,7 @@ function createServer() {return http.createServer(async(req,res)=>{
   if(url.pathname==='/advanced-core.js'){res.setHeader('Content-Type','text/javascript');res.end(fs.readFileSync(path.join(root,'advanced-core.cjs')));return;}
   if(url.pathname==='/core.js'){res.setHeader('Content-Type','text/javascript');res.end(fs.readFileSync(path.join(root,'core.cjs')));return;}
   if(url.pathname==='/planner-core.js'){res.setHeader('Content-Type','text/javascript');res.end(fs.readFileSync(path.join(root,'planner-core.cjs')));return;}
+  if(url.pathname==='/quest-core.js'){res.setHeader('Content-Type','text/javascript');res.end(fs.readFileSync(path.join(root,'quest-core.cjs')));return;}
   if(url.pathname==='/map-logic.js'){res.setHeader('Content-Type','text/javascript');res.end(fs.readFileSync(path.join(root,'map-logic.cjs')));return;}
   let relative;try {relative=decodeURIComponent(url.pathname);}catch{res.writeHead(400);res.end();return;}
   const base=relative.startsWith('/maps/')?path.join(root,'maps'):root;

@@ -29,6 +29,7 @@
   osc.connect(amp);amp.connect(ac.destination);osc.start(at);osc.stop(at+duration+.006);
  }
  function play(kind='click'){
+  if(!document.hasFocus())return;
   if(!enabled()||volume()===0)return;
   const ac=context();if(!ac)return;
   if(ac.state==='suspended')ac.resume().catch(()=>{});

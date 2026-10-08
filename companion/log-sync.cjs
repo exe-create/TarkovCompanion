@@ -65,8 +65,8 @@ function createLogSync({ getSettings = () => ({}), onEvents = () => {}, onRecord
       }
     };
     // Include files directly in a selected session folder, or files in the recent session folders under Logs.
-    if (roots.length === 0) add(folder);
-    else for (const root of roots.slice(0, 8)) add(root.full);
+    add(folder);
+    for (const root of roots.slice(0, 8)) add(root.full);
     return candidates.sort((a, b) => b.mtime - a.mtime).slice(0, MAX_FILES);
   }
 
@@ -76,7 +76,7 @@ function createLogSync({ getSettings = () => ({}), onEvents = () => {}, onRecord
 
   function processLine(file, lineNumber, line, mode, profile, emit) {
     const context = /^\d{4}-\d\d-\d\d[^|]*\|[^|]*\|[^|]*\|application\|Session mode:\s*([^\s|]+)/i.exec(line);
-    if (context) return { mode: canonicalMode(context[1]) || mode };
+    if (context) return { mode: canonicalMode(context[1]) };
     const events = PlannerCore.parseLogLine(line);
     for (const event of events) {
       if (mode) event.mode = mode;
@@ -120,9 +120,8 @@ function createLogSync({ getSettings = () => ({}), onEvents = () => {}, onRecord
         if (isNew && initialImport) {
           cursor = { offset: Math.max(0, file.size - MAX_FILE_BYTES), partial: '', lineNumber: 0 };
         } else if (file.size < cursor.offset) {
-          cursor = { offset: file.size, partial: '', lineNumber: 0 };
-          cursors[key] = cursor;
-          continue;
+          cursor = { offset: initialImport?Math.max(0,file.size-MAX_FILE_BYTES):file.size, partial: '', lineNumber: 0 };
+          if(!initialImport){cursors[key] = cursor;continue;}
         }
         const readLength = Math.min(file.size - cursor.offset, MAX_FILE_BYTES);
         if (readLength <= 0) continue;
@@ -152,7 +151,7 @@ function createLogSync({ getSettings = () => ({}), onEvents = () => {}, onRecord
           if (!line) continue;
           cursor.lineNumber = (cursor.lineNumber || 0) + 1;
           const result = processLine(file.full, cursor.lineNumber, line, state.mode, profile, emitted);
-          if (result.mode) state.mode = result.mode;
+          if ('mode' in result) state.mode = result.mode;
           const hash = lineHash(file.full, cursor.lineNumber, line);
           if (emittedHashes.has(hash)) continue;
           emittedHashes.add(hash);
@@ -186,7 +185,7 @@ function createLogSync({ getSettings = () => ({}), onEvents = () => {}, onRecord
     timer = null;
     if (settings().logSync === true) {
       // Baseline existing files so enabling watch never silently replays old content.
-      const poll=()=>{try{scan();}catch{/* Preserve cursors and retry on the next poll; manual Sync reports errors. */}};
+      const poll=()=>{try{scan({initialImport:settings().syncFollow===true});}catch{/* Preserve cursors and retry on the next poll; manual Sync reports errors. */}};
       poll();
       timer = setInterval(poll, pollIntervalMs);
       timer.unref?.();

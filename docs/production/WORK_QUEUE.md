@@ -5,6 +5,24 @@ purpose: canonical active work queue
 -->
 # Active production work queue
 
+## TASK-007 — Quiet background work and automatic quest organization
+Status: implemented / locally verified / v0.1.1 packaging pending
+Priority: high
+Owner: Codex
+Type: work
+
+### Goal
+Prevent random sync/load interruptions during play and organize automatically recognized quest progress using our own interface.
+
+### Scope and acceptance
+Background sync/watchers/failures are silent and never activate windows or open dialogs. Defer page rebuilds while focused or in a dialog; keep diagnostics in Preferences. Public community requirements remain separate from personal source records. Catch recent new log sessions after downtime, retain mode/inbox protections, reject older source updates and preserve manual corrections. Distinguish ready-to-hand-in from completion and only accept known completed objective identities. Group remaining map objectives, rank active/hand-in/unlock goals and auto-track six current-map tasks without modifying manual pins. No game-process access, capture on timers, borrowed third-party UI or automatic updater.
+
+### Validation
+41 Node tests and syntax checks passed, plus browser UI, original quest board, audio controls, native Sync and screenshot watcher/restart regressions. New hidden native quiet-sync coverage validates typed input preservation, accepted hand-in/completion updates, failed refresh/unknown screenshots, no toasts/dialogs/window creation/activation and no global key registrations in the test. Quest records are synthetic fixtures; installed game logs previously exposed session mode only. No live-game or zero-resource-impact claim. Source/UI evidence: companion/tests/quiet-sync-desktop.cjs, quest-core.test.cjs, quest-catchup.test.cjs, quest-ui.cjs and ignored evidence/quest-board-v0.1.1.png.
+
+### Delivery
+Prepare/publish v0.1.1 Windows preview. Do not restart the user's running app during a raid; load this version at the next intentional restart.
+
 ## TASK-003 — Configurable hotkeys, compact minimap and main background
 Status: implemented / locally verified / real-game acceptance pending
 Priority: high

@@ -1,6 +1,6 @@
 {
   "name": "tarkov-companion",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Personal external Tarkov planning companion",
   "main": "desktop.cjs",
@@ -14,7 +14,7 @@
     "test:ocr": "node tests/ocr-smoke.cjs",
     "test:map-ui": "node tests/map-ui-smoke.cjs",
     "sync": "node scripts/sync.cjs",
-    "check": "node --check app.js && node --check desktop.cjs && node --check server.cjs && node --check core.cjs && node --check map-logic.cjs && node --check map-ui.js && node --check art.js && node --check scripts/sync.cjs && node --check preload.cjs && node --check tools-ui.js && node --check features-ui.js && node --check planner-core.cjs && node --check overlay-manager.cjs && node --check sharing.cjs && node --check keybinds.cjs && node --check ui-audio.js && node --check phone.js && node --check log-sync.cjs && node --check advanced-core.cjs && node --check advanced-ui.js && node --check sync-engine.cjs && node --check sync-ui.js && node --check sync-inbox.cjs",
+    "check": "node --check app.js && node --check desktop.cjs && node --check server.cjs && node --check core.cjs && node --check map-logic.cjs && node --check map-ui.js && node --check art.js && node --check scripts/sync.cjs && node --check preload.cjs && node --check tools-ui.js && node --check features-ui.js && node --check planner-core.cjs && node --check overlay-manager.cjs && node --check sharing.cjs && node --check keybinds.cjs && node --check ui-audio.js && node --check phone.js && node --check log-sync.cjs && node --check advanced-core.cjs && node --check advanced-ui.js && node --check sync-engine.cjs && node --check sync-ui.js && node --check sync-inbox.cjs && node --check quest-core.cjs && node --check quest-ui.js && node --check quiet-ui.js",
     "test:minimap": "node tests/minimap-desktop.cjs",
     "test:features": "node tests/features-ui.cjs",
     "test:overlays": "node tests/overlays-desktop.cjs",
@@ -22,7 +22,9 @@
     "test:advanced": "node tests/advanced-ui.cjs",
     "test:sync": "node tests/sync-desktop.cjs",
     "package:windows": "node scripts/package-windows.cjs",
-    "test:release": "node tests/release-smoke.cjs"
+    "test:release": "node tests/release-smoke.cjs",
+    "test:quiet-sync": "node tests/quiet-sync-desktop.cjs",
+    "test:quest-ui": "node tests/quest-ui.cjs"
   },
   "devDependencies": {
     "electron": "41.10.6",
