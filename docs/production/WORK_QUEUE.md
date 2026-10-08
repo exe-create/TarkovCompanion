@@ -175,3 +175,5 @@ Map/items/quests independently usable; prices include real trader offers; saved 
 
 ### Definition of Done
 This bounded package is implemented and locally verified. Full Questie parity remains open: global Shift-click/icon recognition, internet relay, verified automatic quest/raid/map log payloads, longitudinal wipe economy, canonical story/endings and precise Bitcoin/craft-skill calculations. In-game acceptance/permissions remain pending. Next step: reopen app, use free-key preset, validate known screenshot point and borderless overlay without changing game controls.
+
+TASK-007 refinement: periodic public-data downloads wait for main-planner focus. Local log/screenshot watchers continue quietly while playing, so automatic quest updates do not trigger the public-data download cycle during gameplay.

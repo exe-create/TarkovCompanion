@@ -44,3 +44,5 @@ Owner chose whichever sharing is most convenient/simple: opt-in token-protected 
 
 ## DEC-011 — Sync only source-confirmed state
 2026-10-07: One-button Sync may discover known local Logs/screenshots paths, use a session mode recorded within 24 hours, refresh public community caches, and import recognized quest/raid records. Keep unmatched records in a durable inbox partitioned by mode until a matching profile is selected. When several profiles share a detected mode, require the user to choose; logs do not identify an account. Screenshot positions require a unique filename map label. Do not infer player level, hideout levels, inventory or station timers from the current verified sources; preserve their manual values. Cache refresh failure retains the previous cache. Real client logs currently confirm session-mode metadata only, so fixture parser tests are not proof of live quest/raid sync.
+
+TASK-007 refinement: periodic public-data downloads wait for main-planner focus. Local log/screenshot watchers continue quietly while playing, so automatic quest updates do not trigger the public-data download cycle during gameplay.
