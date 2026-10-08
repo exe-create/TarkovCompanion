@@ -6,9 +6,9 @@ purpose: canonical active work queue
 # Active production work queue
 
 ## TASK-008 — Repair loot/container layers and simplify filters
-Status: implemented / browser verified / portable validation pending
+Status: implemented / browser and portable verified / v0.1.2 published
 Owner: Codex
-Scope: Owner-reported BUG-002 and directly related map filter usability. Fix missing AdvancedUI API, per-map persistence and source variant selection; add clear layer symbols/counts and reset/bulk visibility controls. Preserve profiles, quests, pins and quiet background behavior. Tests: 41 Node, syntax, advanced UI, map UI and hidden native quiet-sync passed; portable checks pending. Do not automatically restart the running tracker without the owner's restart choice.
+Scope: Owner-reported BUG-002 and directly related map filter usability. Fix missing AdvancedUI API, per-map persistence and source variant selection; add clear layer symbols/counts and reset/bulk visibility controls. Preserve profiles, quests, pins and quiet background behavior. Tests: 41 Node, syntax, advanced UI, map UI and hidden native quiet-sync passed; exact extracted portable checks passed, including actual container/loot/key markers. Public release: https://github.com/exe-create/TarkovCompanion/releases/tag/v0.1.2; anonymous downloads and asset digest/size verified. Do not automatically restart the running tracker without the owner's restart choice.
 
 ## TASK-007 — Quiet background work and automatic quest organization
 Status: implemented / locally verified / v0.1.1 public prerelease published

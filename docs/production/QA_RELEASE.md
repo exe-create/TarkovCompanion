@@ -36,3 +36,7 @@ The source repository is public at https://github.com/exe-create/TarkovCompanion
 The portable runtime includes thirteen base map files with the upstream attribution/license/readme under `licenses/maps` and `resources/app/licenses/maps`; unused interactive map assets, raw art/references, and offline reference source files are excluded. Keep BSG permission, game-runtime acceptance, and exclusive-fullscreen support explicitly unresolved.
 
 TASK-007 refinement: periodic public-data downloads wait for main-planner focus. Local log/screenshot watchers continue quietly while playing, so automatic quest updates do not trigger the public-data download cycle during gameplay.
+
+## v0.1.2 map-layer hotfix evidence
+
+BUG-002 / TASK-008: 41 Node tests, syntax, advanced UI, map UI and hidden native quiet-sync passed. Expanded advanced UI checks enable all three affected layers, assert real markers, validate bulk container visibility, zero-match/reset, map isolation, saved preset/reload persistence and minimap layers. Screenshot inspected: companion/evidence/map-loot-filters.png. The exact extracted ZIP passed hidden native executable launch, actual container/loot/key markers, map/hideout/Sync/minimap and isolated persistence/reopen with PATH restricted to System32. No live-game or clean-machine claim. Anonymous ZIP/checksum HTTP 200 and asset digest/size verified.

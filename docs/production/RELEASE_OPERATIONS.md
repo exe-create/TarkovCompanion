@@ -5,6 +5,12 @@ purpose: release packaging hotfix rollback and compatibility policy
 -->
 # Release operations
 
+## Published v0.1.2 map-layer hotfix
+
+Public prerelease: https://github.com/exe-create/TarkovCompanion/releases/tag/v0.1.2. Build `ced1f849cc2f0d6ddf4f79b4298b61a22b3de292`, Electron `41.10.6`; ZIP `TarkovCompanion-0.1.2-win-x64.zip` (198240059 bytes), SHA-256 `e3ce9b30b7c9713c645db3eb24f63d3fc91d10f925b168fcc6f8071a2dde1720`.
+
+Exact extracted package passed hidden native startup, real container/loot/key marker rendering, maps/hideout/Sync/minimap, persistence and reopen with Node unavailable on PATH. 41 Node tests, syntax, map/advanced UI and quiet native checks passed. Anonymous downloads returned HTTP 200 and the GitHub asset digest/size matched. Release notes: companion/evidence/release-notes-v0.1.2.md. Profiles are preserved; the running old version needs an intentional restart after a raid. Clean-machine, real-game coordinates, BSG approval and exclusive-fullscreen acceptance remain unverified.
+
 ## Published v0.1.1 quiet sync preview
 
 Public prerelease: https://github.com/exe-create/TarkovCompanion/releases/tag/v0.1.1. Build commit `53524c98c8500e504ee45517ef7bb1d6fa60a3b4`, Electron `41.10.6`; artifact `TarkovCompanion-0.1.1-win-x64.zip` (198,238,532 bytes), SHA-256 `4cb122146f8e190e505b447abd55bf6a5d81ae62b9bfee8fb6906a3b868c31db`.

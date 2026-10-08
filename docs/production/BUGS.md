@@ -6,7 +6,7 @@ purpose: canonical confirmed bug and blocker ledger
 # Confirmed bugs and blockers
 
 ## BUG-002 — Container, loot and key layers abort map rendering
-Status: fixed / browser verified / portable validation pending
+Status: fixed / browser and portable verified / v0.1.2 published
 Priority: high
 Owner: Codex
 Type: bug
@@ -18,7 +18,7 @@ Owner reported no container/loot markers and an AdvancedUI filter error in v0.1.
 Export the filter accessor, preserve map presets when saving, and scope item/container/search/owned-door filters per profile and map. Move legacy global filter choices to the current map once. Layer changes save the new value before rerendering. Match source variants through MapUI's shared group selection. Add distinct original crate/loot/lock/switch symbols, legend entries, marker counts, missing-source/filter guidance, bulk container visibility and a reset action. Keep navigation markers above loot markers.
 
 ### Validation
-`test:advanced` now enables containers, loose loot and keys; asserts markers render, verifies zero-match/reset and bulk visibility, then tests map isolation and reload persistence. It passed, along with `test:map-ui`, 41 Node tests, syntax and hidden native quiet-sync. Source screenshot `companion/evidence/map-loot-filters.png` was inspected. Live game coordinates remain reference data; no actual loot availability claim. Portable validation is pending.
+`test:advanced` now enables containers, loose loot and keys; asserts markers render, verifies zero-match/reset and bulk visibility, then tests map isolation and reload persistence. It passed, along with `test:map-ui`, 41 Node tests, syntax and hidden native quiet-sync. Source screenshot `companion/evidence/map-loot-filters.png` was inspected. Live game coordinates remain reference data; no actual loot availability claim. The exact extracted v0.1.2 ZIP passed hidden native startup, actual container/loot/key marker rendering, map/hideout/Sync/minimap and persistence/reopen with Node unavailable on PATH. Published asset size/digest and anonymous ZIP/checksum HTTP 200 were verified.
 
 Only add a bug when there is a concrete symptom, reproduction/evidence, or source-confirmed failure.
 
