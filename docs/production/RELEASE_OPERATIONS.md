@@ -5,6 +5,14 @@ purpose: release packaging hotfix rollback and compatibility policy
 -->
 # Release operations
 
+## Published v0.1.1 quiet sync preview
+
+Public prerelease: https://github.com/exe-create/TarkovCompanion/releases/tag/v0.1.1. Build commit `53524c98c8500e504ee45517ef7bb1d6fa60a3b4`, Electron `41.10.6`; artifact `TarkovCompanion-0.1.1-win-x64.zip` (198,238,532 bytes), SHA-256 `4cb122146f8e190e505b447abd55bf6a5d81ae62b9bfee8fb6906a3b868c31db`.
+
+The exact extracted archive passed hidden native executable startup, community data/map assets, hideout, Sync/minimap access, isolated profile persistence and close/reopen with PATH restricted to System32. Hidden tests register no global keys and show no windows. 41 Node tests, syntax and focused UI/native regressions passed. Anonymous public release metadata, ZIP/checksum HTTP 200 and GitHub asset digest/size were verified. Package privacy and shipped production dependency/license checks passed. Release notes: `companion/evidence/release-notes-v0.1.1.md`.
+
+Scheduled public downloads wait for main-planner focus; local opt-in watchers retain updates quietly. Do not restart the user's running application automatically. Update intentionally after a raid and preserve `%APPDATA%/TarkovCompanion`. Quest-event tests use fixtures; inspected installed logs exposed mode metadata only. Missing quest progress, hideout and inventory require manual entry. Clean-machine, live-game, BSG approval, anti-cheat and exclusive-fullscreen acceptance remain unverified. The same packaging/provenance gates below apply.
+
 ## Published v0.1.0 portable Windows preview
 
 Status: published prerelease. The public source repository is https://github.com/exe-create/TarkovCompanion. Release page: https://github.com/exe-create/TarkovCompanion/releases/tag/v0.1.0. Build commit `361ae5a`, Electron `41.10.6`; artifact `TarkovCompanion-0.1.0-win-x64.zip` (198,233,338 bytes), SHA-256 `a873f10f1265be76750b6c6d1bfb4e9ece2b6a3746fc363ac9f0e18a87d0e244`.

@@ -6,7 +6,7 @@ purpose: canonical active work queue
 # Active production work queue
 
 ## TASK-007 — Quiet background work and automatic quest organization
-Status: implemented / locally verified / v0.1.1 packaging pending
+Status: implemented / locally verified / v0.1.1 public prerelease published
 Priority: high
 Owner: Codex
 Type: work
@@ -21,7 +21,7 @@ Background sync/watchers/failures are silent and never activate windows or open 
 41 Node tests and syntax checks passed, plus browser UI, original quest board, audio controls, native Sync and screenshot watcher/restart regressions. New hidden native quiet-sync coverage validates typed input preservation, accepted hand-in/completion updates, failed refresh/unknown screenshots, no toasts/dialogs/window creation/activation and no global key registrations in the test. Quest records are synthetic fixtures; installed game logs previously exposed session mode only. No live-game or zero-resource-impact claim. Source/UI evidence: companion/tests/quiet-sync-desktop.cjs, quest-core.test.cjs, quest-catchup.test.cjs, quest-ui.cjs and ignored evidence/quest-board-v0.1.1.png.
 
 ### Delivery
-Prepare/publish v0.1.1 Windows preview. Do not restart the user's running app during a raid; load this version at the next intentional restart.
+v0.1.1 Windows preview is published at https://github.com/exe-create/TarkovCompanion/releases/tag/v0.1.1. The exact extracted ZIP passed hidden native startup, maps/hideout/Sync/minimap, persistence and reopen checks with Node unavailable on PATH. Anonymous public ZIP/checksum HTTP 200 and GitHub digest/size were verified. See RELEASE_OPERATIONS.md for the build and hash. Do not restart the user's running app during a raid; load this version at the next intentional restart. Real-game quest payload availability and game compatibility remain live-pending.
 
 ## TASK-003 — Configurable hotkeys, compact minimap and main background
 Status: implemented / locally verified / real-game acceptance pending
