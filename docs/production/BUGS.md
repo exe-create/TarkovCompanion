@@ -7,6 +7,8 @@ purpose: canonical confirmed bug and blocker ledger
 
 ## BUG-002 — Container, loot and key layers abort map rendering
 Status: fixed / browser and portable verified / v0.1.2 published
+
+Local follow-up, 2026-10-07: owner reported continued failures. `companion/advanced-ui.js` had an uncommitted exact reversion to the pre-fix module, removing filters/persist/afterMount while current callers still required them. Preserved that file in ignored evidence before restoring the compatible committed module. A hidden native run using an isolated copy of the owner's state loaded all thirteen maps without page errors and exercised containers/loot/keys, reset, bulk visibility and restored counts. Original profiles were not modified. Source is again identical to the verified v0.1.2 module; no replacement binary was needed. This validates local source against copied configuration, not whichever older executable a user might still launch.
 Priority: high
 Owner: Codex
 Type: bug
